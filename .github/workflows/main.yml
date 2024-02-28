@@ -1,0 +1,23 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main  # или другая ветка вашего выбора
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to hosting
+      uses: easingthemes/ssh-deploy@v2.1.4
+      with:
+        server_ip: ${{ secrets.SERVER_IP }}
+        server_username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        local_path: "AraratFrontEnd"  # Путь к вашему проекту на GitHub
+        server_path: "/var/www/html/araratChess"  # Путь на сервере, куда нужно разместить ваш сайт
