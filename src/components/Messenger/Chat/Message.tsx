@@ -105,14 +105,14 @@ const Message: FC<MessageProps> = ({ msg, isMe, setContext, className }) => {
                         </div>
                     </Link>
                 :
-                <div id={msg._id} className={['flex w-2/3 mb-10 [&>div>.arr-menu]:hover:block', isMe ? 'self-end justify-end' : 'self-start justify-start', className].join(' ')}>
+                <div id={msg._id} className={['flex w-2/3 mb-10 xl:[&>div>.arr-menu]:hover:block', isMe ? 'self-end justify-end' : 'self-start justify-start', className].join(' ')}>
                     <Avatar className='-translate-y-[5px] order-2' avatar={msg.from?.avatar} />
                     <div onContextMenu={e => handleClick(e)} className={['msg-con pr-8 shadow-md transition-all rounded-md py-2 px-3 relative before:absolute before:border-[10px] before:border-transparent before:border-t-[10px] before:top-0', isMe ? 'bg-apricot order-1 mr-5 before:border-t-apricot before:right-0 before:translate-x-1/2' : 'bg-white order-3 ml-5 before:border-t-white before:left-0 before:-translate-x-1/2', !isMe && blinkMessage === msg._id ? '!bg-gray-600' : null, isMe && blinkMessage === msg._id ? '!bg-[#FFAE7A]' : null].join(' ')}>
-                        <div className='absolute right-2 top-2 w-6 h-4 flex'>
+                        <div className='absolute right-2 top-2 w-6 h-4 flex xl:hidden'>
                             <BtnArrowContextMenuMobile btnType={'chat'}/>
                         </div>
 
-                        {/*<div className={['arr-menu hidden absolute right-2 text-gray-800 top-2 text-xl cursor-pointer', isMe ? 'bg-apricot' : 'bg-white'].join(' ')} onClick={e => handleClick(e)}><IoIosArrowDown /></div>*/}
+                        <div className={['arr-menu hidden absolute right-2 text-gray-800 top-2 text-xl cursor-pointer', isMe ? 'bg-apricot' : 'bg-white'].join(' ')} onClick={e => handleClick(e)}><IoIosArrowDown /></div>
                         <h2 className={['font-medium text-sm mb-1', (msg.from?.role === 'DIRECTOR' || msg.from?.role === 'ZDIRECTOR' || msg.from?.role === 'ADMIN') && '!text-red-700'].join(' ')} style={{ color: msg.from?.hex }}>
                             {(!chat.anonim || user.role === 'DIRECTOR' || user.role === 'ZDIRECTOR' || (user.role === 'ADMIN' && (chat._id === '651c1e9fbfbc95c1f9d7f8b8' || chat._id === '64e260054ae1183395474c7b'))) ? msg.from?.name + ' ' + msg.from?.sname : 'Пользователь'}
                             <span className='text-red-500'>
